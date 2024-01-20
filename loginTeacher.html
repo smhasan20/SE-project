@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Include necessary meta tags, styles, and scripts -->
+    <title>Login</title>
+    <style>
+        /* Center content vertically and horizontally */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #CCCCFF; /* Background color for the page */
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Style your form and other elements as needed */
+        .login-container {
+            text-align: center;
+            background-color: #6667AB;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        /* Style form labels */
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Style form inputs */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Style submit button */
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #333;
+        }
+
+        /* Style the heading */
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="login-container">
+        <h2>Login</h2>
+        <form onsubmit="redirectToHome(); return false;"> <!-- Use JavaScript to handle form submission -->
+            <label for="roll">ID:</label>
+            <input type="text" id="roll" name="roll" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <input type="submit" value="Log In">
+        </form>
+    </div>
+
+    <script>
+        // JavaScript function to redirect to Home.html
+        function redirectToHome() {
+            // Simulate a successful login
+            // You should replace this with your actual login validation
+            var roll = document.getElementById("roll").value;
+            var password = document.getElementById("password").value;
+            
+            // Example: Check if roll and password are not empty
+            if (roll.trim() !== "" && password.trim() !== "") {
+                // Redirect to Home.html
+                window.location.href = "Home.html";
+            } else {
+                // Handle invalid login here (display an error message, etc.)
+                alert("Invalid login. Please provide valid credentials.");
+            }
+        }
+    </script>
+</body>
+</html>
