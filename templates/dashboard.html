@@ -1,0 +1,46 @@
+<!-- dashboard.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Academic performance of {{ student.sName }}!</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Id</th>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>CT1</th>
+                    <th>CT2</th>
+                    <th>CT3</th>
+                    <th>Attendance</th>
+                    <th>Teacher Comment</th>
+				
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data_table_data %}
+                    <tr>
+                        <td>{{ row.sId__sId }}</td> 
+                        <td>{{ row.cId__cId }}</td>
+                        <td>{{ row.cId__courseName }}</td> 
+                        <td>{{ row.ct1 }}</td>
+                        <td>{{ row.ct2 }}</td>
+                        <td>{{ row.ct3 }}</td>
+                        <td>{{row.attendance}}</td>
+                        <td>{{row.comment}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    
+</body>
+</html>
