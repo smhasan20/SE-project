@@ -1,0 +1,17 @@
+<!-- myapp/templates/continuousassessment_delete.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Continuous Assessment</title>
+</head>
+<body>
+    <h1>Delete Continuous Assessment</h1>
+    <p>Are you sure you want to delete the assessment for "{{ assessment.student }}" in "{{ assessment.course }}"?</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'continuousassessment_list' %}">Cancel</a>
+</body>
+</html>

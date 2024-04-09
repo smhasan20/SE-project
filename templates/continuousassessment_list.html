@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Continuous Assessment List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Continuous Assessment List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Course Name</th>
+                <th>Score</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for assessment in assessments %}
+                <tr>
+                    <td>{{ assessment.student.sName }}</td>
+                    <td>{{ assessment.course.courseName }}</td>
+                    <td>{{ assessment.marks }}</td>
+                    <td><a href="{% url 'continuousassessment_detail' assessment.id %}">Details</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'continuousassessment_add' %}">Add Continuous Assessment</a>
+</body>
+</html>

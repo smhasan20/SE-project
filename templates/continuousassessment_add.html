@@ -1,21 +1,21 @@
-<!-- myapp/templates/add_course.html -->
+<!-- myapp/templates/continuousassessment_add.html -->
 {% load static %}
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'forms.css' %}">
     <link rel="stylesheet" href="{% static 'add.css' %}">
-    <title>Add Course</title>
+
+    <title>Add Continuous Assessment</title>
 </head>
 <body>
-    <h2>Add Course</h2>
+    <h1>Add Continuous Assessment</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
-    <a href="{% url 'course_list' %}">Cancel</a> 
+    <a href="{% url 'continuousassessment_list' %}">Cancel</a>
 </body>
 </html>

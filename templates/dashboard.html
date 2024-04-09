@@ -1,46 +1,121 @@
-<!-- dashboard.html -->
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Plotly CDN -->
 </head>
 <body>
     <div class="dashboard-container">
         <h1>Academic performance of {{ student.sName }}!</h1>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Student Id</th>
-                    <th>Course ID</th>
-                    <th>Course Name</th>
-                    <th>CT1</th>
-                    <th>CT2</th>
-                    <th>CT3</th>
-                    <th>Attendance</th>
-                    <th>Teacher Comment</th>
-				
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in data_table_data %}
+        <!-- Course and Attendance Table -->
+        <div class="table-container">
+            <h2>Course and Attendance:</h2>
+            <table>
+                <!-- Course and Attendance table content -->
+                <thead>
                     <tr>
-                        <td>{{ row.sId__sId }}</td> 
-                        <td>{{ row.cId__cId }}</td>
-                        <td>{{ row.cId__courseName }}</td> 
-                        <td>{{ row.ct1 }}</td>
-                        <td>{{ row.ct2 }}</td>
-                        <td>{{ row.ct3 }}</td>
-                        <td>{{row.attendance}}</td>
-                        <td>{{row.comment}}</td>
+                        <th>Course Name</th>
+                        <th>Attendance</th>
+                        <th>Performance Graph</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for row in course_attendance %}
+                        <tr>
+                            <td>{{ row.course__courseName }}</td>
+                            <td>{{ row.attendance }}</td>
+                            <td>
+                                <button onclick="toggleGraph('{{ row.course__courseName }}')">Show Graph</button>
+                                <div id="graphContainer_{{ row.course__courseName }}" class="graph-container" style="display: none;"></div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <h2>Course and Marks:</h2>
+            <table>
+                <!-- Course and Marks table content -->
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Marks</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in assessment1 %}
+                        <tr>
+                            <td>{{ row.course__courseName }}</td>
+                            <td>{{ row.marks }}</td>
+                            <td>{{ row.comment }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-    
-    
+
+    <!-- JavaScript code for showing/hiding the graph -->
+    <script>
+        function toggleGraph(courseName) {
+            const containerId = `graphContainer_${courseName}`;
+            const container = document.getElementById(containerId);
+
+            // Toggle the display state of the graph container
+            if (container.style.display === 'none') {
+                // Show the graph container
+                container.style.display = 'block';
+
+                // Fetch marks data and generate the graph if it's not already generated
+                if (container.children.length === 0) {
+                    fetchMarksAndGenerateGraph(courseName, container);
+                }
+            } else {
+                // Hide the graph container
+                container.style.display = 'none';
+            }
+        }
+
+        function fetchMarksAndGenerateGraph(courseName, container) {
+            // Fetch marks data for the corresponding course
+            fetch(`/api/marks/?course_name=${courseName}`)
+                .then(response => response.json())
+                .then(data => {
+                    const marks = data.marks;
+                    const xValues = marks.map((mark, index) => `Assessment ${index + 1}`); // Generate x-axis values dynamically
+
+                    // Generate the graph using Plotly.js
+                    const graphData = [{
+                        x: xValues,
+                        y: marks.map(mark => mark.marks),
+                        type: 'scatter',
+                        mode: 'lines+points',
+                        name: `${courseName} Performance`
+                    }];
+
+                    const layout = {
+                        title: `${courseName} Performance Graph`,
+                        xaxis: {
+                            title: 'Assessment'
+                        },
+                        yaxis: {
+                            title: 'Marks'
+                        }
+                    };
+
+                    Plotly.newPlot(container, graphData, layout);
+                })
+                .catch(error => console.error('Error fetching marks:', error));
+        }
+    </script>
 </body>
 </html>

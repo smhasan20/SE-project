@@ -1,0 +1,19 @@
+<!-- myapp/templates/continuousassessment_update.html -->
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'update.css' %}">
+    <title>Update Continuous Assessment</title>
+</head>
+<body>
+    <h1>Update Continuous Assessment</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+    <a href="{% url 'continuousassessment_list' %}">Cancel</a>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Attendance List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Course Attendance List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Course Name</th>
+                <th>Attendance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in course_attendances %}
+                <tr>
+                    <td>{{ attendance.student.sName }}</td>
+                    <td>{{ attendance.course.courseName }}</td>
+                    <td>{{ attendance.attendance }}</td>
+                    <td><a href="{% url 'courseattendance_detail' attendance.id %}">Details</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'courseattendance_add' %}">Add Course Attendance</a>
+</body>
+</html>

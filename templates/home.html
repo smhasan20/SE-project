@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,17 +16,17 @@
         <div class="login-buttons">
             <a href="{% url 'loginst' %}">Login</a>
             <a href="{% url 'signup' %}">Signup</a>
+            <!-- Add the new Author button -->
+            <a href="{% url 'author' %}">Author</a>
         </div>
     </nav>
 
-   
-        <h2 align="center">Welcome to our Student Performance Tracking System!</h2>
-        <p align="center">"Empowering educators and students to achieve excellence through effective performance tracking"</p>
+    <h2 align="center">Welcome to our Student Performance Tracking System!</h2>
+    <p align="center">"Empowering educators and students to achieve excellence through effective performance tracking"</p>
+
     
-       
 
     <section>
-        
         <div>
             <h2>Student Results</h2>
             <p>Track performance in all exams: Marks, Grade, Percentage & Percentile achieved.<br>
@@ -36,11 +35,10 @@
             Get actionable insights to improve student performance.</p>
         </div>
         <img src="{% static 'background.jpg' %}" alt="Student Results Image">
-      
     </section>
 
     <section class="right-align">
-        <img src="{% static 'attendance.png' %}"alt="Attendance Image">
+        <img src="{% static 'attendance.png' %}" alt="Attendance Image">
         <div>
             <h2>Attendance</h2>
             <p>Track student attendance across all subjects.<br>
@@ -55,8 +53,11 @@
             Track student exam performance with the help of graphs, take necessary corrective actions.</p>
         </div>
         <img src="{% static 'Pr.png' %}" alt="Student Progress Graph Image">
-       
     </section>
+
+    <!-- Your existing content... -->
+
+    
 
 </body>
 </html>

@@ -31,7 +31,7 @@ label {
 
 /* Style form inputs */
 input[type="text"],
-input[type="email"],
+input[type="text"],
 input[type="password"] {
     width: calc(100% - 22px); /* Adjusting width to accommodate for padding */
     padding: 10px;

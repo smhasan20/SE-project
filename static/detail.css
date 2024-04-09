@@ -1,0 +1,37 @@
+/* myapp/static/student_detail.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #6bc1e2;
+    margin: 0;
+    padding: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    max-width: 600px;
+    padding: 200px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ccc5c5;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    margin: 10px 0;
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+}

@@ -1,19 +1,45 @@
-<!-- myapp/templates/add_student.html -->
 {% load static %}
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'forms.css' %}">
+    <link rel="stylesheet" href="{% static 'add.css' %}">
+
     <title>Add Student</title>
 </head>
 <body>
     <h2>Add Student</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        
+        <!-- Render form fields excluding password -->
+        {% for field in form.visible_fields %}
+            {% if field.name != "password" %}
+                <div>{{ field.label_tag }} {{ field }}</div>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- Password input field with eye icon toggle -->
+        <div style="position: relative;">
+            <input type="password" name="password" id="id_password">
+            <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
+        </div>
+
         <button type="submit">Save</button>
     </form>
+
+    <!-- JavaScript for password visibility toggle -->
+    <script>
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("id_password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>

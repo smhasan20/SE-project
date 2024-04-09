@@ -1,0 +1,24 @@
+<!-- myapp/templates/continuousassessment_detail.html -->
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'detail.css' %}">
+    <title>Continuous Assessment Detail</title>
+</head>
+<body>
+    <h1>Continuous Assessment Detail</h1>
+    <p>Student: {{ assessment.student }}</p>
+    <p>Course: {{ assessment.course }}</p>
+    <p>Marks: {{ assessment.marks }}</p>
+    <p>Comment: {{ assessment.comment }}</p>
+    <!-- Add other details as needed -->
+    <a href="{% url 'continuousassessment_update' assessment.id %}">Update Continuous Assessment</a>
+    <form action="{% url 'continuousassessment_delete' assessment.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete Continuous Assessment</button>
+    </form>
+    <a href="{% url 'continuousassessment_list' %}">Back to Continuous Assessment List</a>
+</body>
+</html>

@@ -1,7 +1,8 @@
-/* teacherActivity.css */
+/* myapp/static/teacherActivity.css */
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #ffffff; 
+    background-color: #6bc1e2;
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,24 +13,20 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: #e7ebee;
+    text-align: center;
     margin-bottom: 20px;
 }
 
 p {
-    color: #555;
+    color: #fffefe;
+    text-align: center;
     margin-bottom: 30px;
-}
-
-h2 {
-    color: #333;
-    margin-bottom: 10px;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
 }
 
 li {
@@ -37,12 +34,18 @@ li {
 }
 
 a {
+    display: block;
+    padding: 15px;
+    background-color: #3b56cc;
+    color: #fff;
     text-decoration: none;
-    color: #007BFF;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 a:hover {
-    color: #0056b3;
+    background-color: #2980b9;
 }
+
+/* Add more styles as needed */
